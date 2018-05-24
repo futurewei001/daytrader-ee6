@@ -7,6 +7,7 @@ pipeline {
  echo "BUILD NUMBER: ${BUILD_NUMBER}"
  cd dt-ejb
  mvn clean test
+ mvn clean install
  cd ../Rest
  mvn clean test
  cd ../web
