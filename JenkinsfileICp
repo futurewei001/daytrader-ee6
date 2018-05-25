@@ -1,0 +1,59 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'ICP_MASTER_CFC', defaultValue: 'mycluster.icp:8500')
+        string(name: 'ICP_MASTER_8001', defaultValue: 'https://10.0.2.15:8001')
+        string(name: 'ICP_TOKEN', defaultValue: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4tNjcya2siLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjZmMDlmM2M1LTVhNjktMTFlOC1iYzgwLTA4MDAyN2NmOGQzNyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlZmF1bHQifQ.YjGvj2QhPxETAnifUsZmNpXct779QwLJoOMOJOxJ_lQugeWAYno77Stvgf9oQ1rPC77s3tYJ5pV_qrDEaOsBK3U1Ov4n8Ph3nYdlbbk1h__8xEkpgrWOQp5Uo5Ksq0ff-OIh0lcVxgV7Zsoqbnvy6kIRNl4kr2JnrXqKjYQ9NbkXEwbwvLuQ3gLJzY8kErS47NLPCEh3mh-vc_Tjj3QMyfNuGeRdkll4-Pb2I1bXaWGVUdZrXheSFZBP_B5op6i4g2liy5KW3g6juhdPYSgXqVsCIzBDR-JOzmd8PQak_3aIvT01FBuXoCcHF9nG9KDmgbOAqm6NNlnePy6IXRwAZw')
+    }
+    stages {
+        stage('Continuous Integration') {
+            steps {
+                sh '''
+                   cd dt-ejb
+                   mvn clean install
+                   cd ../Rest
+                   mvn clean install
+                   cd ../web
+                   mvn clean install
+                   cd ../daytrader-ee6
+                   mvn clean verify –Pci-docker
+                   cd ..
+                   '''
+             }
+        }
+        stage('Continuous Delivery') {
+            steps {
+                sh '''
+                    echo "docker login to master.cfc"
+                    docker login -u admin -p admin $ICP_MASTER_CFC
+                    echo "docker tag"
+                    docker tag dhvines/daytrader-ee6:0.0.1-SNAPSHOT $ICP_MASTER_CFC/default/daytrader-ee6
+                    echo "docker push"
+                    docker push $ICP_MASTER_CFC/default/daytrader-ee6
+                    echo "kubectl login"
+                    kubectl config set-cluster cfc --server=$ICP_MASTER_8001 --insecure-skip-tls-verify=true
+                    kubectl config set-context cfc --cluster=cfc
+                    kubectl config set-credentials user --token=$ICP_TOKEN
+                    kubectl config set-context cfc --user=user --namespace=default
+                    kubectl config use-context cfc
+                    #!/bin/bash
+                    echo "checking if wlp-daytrader-jenkins already exists"
+                    if kubectl describe service wlp-daytrader-jenkins; then
+                        echo "Service already exists, delete first"
+                        kubectl delete service wlp-daytrader-jenkins
+                    fi
+                    if kubectl describe deployment wlp-daytrader-jenkins; then
+                        echo "Application already exists, delete first"
+                        kubectl delete deployment wlp-daytrader-jenkins
+                    fi
+                    echo "Create application"
+                    kubectl create -f app.json
+                    echo "Create service"
+                    set +e
+                    kubectl create -f service.json                                      
+                    echo "finished"
+                '''
+            }
+        }
+    }
+}
