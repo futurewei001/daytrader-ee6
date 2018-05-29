@@ -75,7 +75,7 @@
 
   <properties>
    	<wlpServerName>Daytrader3Sample</wlpServerName>
-	<daytraderAppRoute>http://localhost:9080</daytraderAppRoute>
+	<daytraderAppRoute>http://10.0.2.15:9080</daytraderAppRoute>
   </properties>
   
     	<dependencies>
@@ -250,7 +250,7 @@
         		
         		  <properties>
         		     	<wlpServerName>Daytrader3Sample</wlpServerName>
-						<daytraderAppRoute>http://192.168.254.9:9080</daytraderAppRoute>
+						<daytraderAppRoute>http://10.0.2.15:9080</daytraderAppRoute>
   </properties>
 			
 			  	<dependencies>
