@@ -444,7 +444,7 @@
                 <log>
                   (?s)The server defaultServer is ready to run a smarter planet.
                 </log>
-                <time>40000</time>
+                <time>400000</time>
               </wait>
             </run>
           </image>
