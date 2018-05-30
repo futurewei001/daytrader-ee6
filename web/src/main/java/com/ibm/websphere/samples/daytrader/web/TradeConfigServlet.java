@@ -385,6 +385,9 @@ public class TradeConfigServlet extends HttpServlet {
                     else if (dbProductName.startsWith("Oracle")) // if the Db is Oracle
                     {
                         ddlFile = "/dbscripts/oracle/Table.ddl";
+		    } 
+		    else if (dbProductName.startsWith("MySQL")) { // if the Db is MySQL
+                        ddlFile = "/dbscripts/mysql/Table.ddl";
                     }
                     else // Unsupported "Other" Database
                     {
