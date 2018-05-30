@@ -359,7 +359,7 @@
 			    <execution>
 			      <id>stop</id>
 			      <phase>post-integration-test</phase>
-			      <goals> <goal>stop</goal> </goals>
+			      <goals> </goals>
 			    </execution>
 			  </executions>
 			</plugin>
