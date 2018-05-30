@@ -17,8 +17,35 @@
 	<connectionManager agedTimeout="-1" connectionTimeout="0" id="conMgr1" maxIdleTime="-1" maxPoolSize="70" minPoolSize="70" purgePolicy="FailingConnectionOnly" reapTime="-1"/> 
 	<connectionManager agedTimeout="-1" connectionTimeout="0" id="conMgr2" maxIdleTime="-1" maxPoolSize="50" minPoolSize="10" purgePolicy="FailingConnectionOnly" reapTime="-1"/>
 
+	<!-- 
 	<jdbcDriver id="DerbyEmbedded" libraryRef="DerbyLib"/>
 	<library filesetRef="DerbyFileset" id="DerbyLib"/>
+	-->
+	<!-- Declare the jar files for MySQL access through JDBC. -->
+<library id="MySQLLib">
+  <fileset dir="{server.config.dir}/resources/Daytrader3SampleMysqlLibs" includes="*.jar"/>
+</library>
+	
+	<!-- Declare the Daytrader3Sample Server project database -->
+<dataSource jndiName="jdbc/TradeDataSource" >
+  <jdbcDriver libraryRef="MySQLLib"/>
+  <properties databaseName="mysql" 
+              serverName="localhost" portNumber="3306" 
+              user="root" password="123456"/>
+</dataSource>
+
+
+<!-- Declare the Daytrader3Sample Server reports database -->
+<dataSource jndiName="jdbc/NoTxTradeDataSource" transactional="false">
+  <jdbcDriver libraryRef="MySQLLib"/>
+  <properties databaseName="mysql" 
+              serverName="localhost" portNumber="3306" 
+              user="root" password="123456"/>
+</dataSource>
+	
+	
+	
+	<!-- 
 	<fileset dir="${server.config.dir}/resources/Daytrader3SampleDerbyLibs" id="DerbyFileset" includes="derby-10.10.1.1.jar"/>
 
 	<authData id="TradeDataSourceAuthData" password="db_password" user="db_username"/>
@@ -31,7 +58,8 @@
 	<dataSource connectionManagerRef="conMgr2" id="NoTxTradeDataSource" isolationLevel="TRANSACTION_READ_COMMITTED" jdbcDriverRef="DerbyEmbedded" jndiName="jdbc/NoTxTradeDataSource" statementCacheSize="10" transactional="false"> 
 		<properties.derby.embedded createDatabase="create" databaseName="${server.config.dir}/resources/data/tradedb" password="db_password" user="db_username"/> 
 	</dataSource>
-
+	-->
+	
 	<messagingEngine id="defaultME">
 		<queue id="TradeBrokerQueue"/>
 		<topicSpace id="TradeTopicSpace"/>
