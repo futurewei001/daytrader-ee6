@@ -31,7 +31,7 @@
 <dataSource jndiName="jdbc/TradeDataSource" type="javax.sql.DataSource">
   <jdbcDriver libraryRef="MySQLLib"/>
   <properties databaseName="mysql" 
-              serverName="localhost" portNumber="3306" 
+              serverName="localhost" portNumber="3307" 
               user="root" password="123456"/>
 </dataSource>
 
@@ -39,7 +39,7 @@
 <dataSource jndiName="jdbc/NoTxTradeDataSource" transactional="false">
   <jdbcDriver libraryRef="MySQLLib"/>
   <properties databaseName="mysql" 
-              serverName="localhost" portNumber="3306" 
+              serverName="localhost" portNumber="3307" 
               user="root" password="123456"/>
 </dataSource>
 	
