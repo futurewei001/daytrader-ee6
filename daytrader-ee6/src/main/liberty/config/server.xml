@@ -28,7 +28,7 @@
   <fileset dir="{server.config.dir}/resources/Daytrader3SampleMysqlLibs" includes="*.jar"/>
 </library>
 	
-<dataSource jndiName="jdbc/TradeDataSource" >
+<dataSource jndiName="jdbc/TradeDataSource" type="javax.sql.DataSource">
   <jdbcDriver libraryRef="MySQLLib"/>
   <properties databaseName="mysql" 
               serverName="localhost" portNumber="3306" 
