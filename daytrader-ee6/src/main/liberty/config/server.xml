@@ -46,9 +46,11 @@
 </dataSource>
 -->	
 	
+	
+	
 	<jdbcDriver id="postgresqlJDBC">
              <library name="Postgresql Libs">
-<fileset dir="${shared.resource.dir}/Daytrader3SamplePostgresqlLibs" id="Postgresql Jars" includes="*.jar"/>
+<fileset dir="${server.config.dir}/Daytrader3SamplePostgresqlLibs" id="Postgresql Jars" includes="*.jar"/>
              </library>
       </jdbcDriver>
  
