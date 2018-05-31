@@ -25,7 +25,7 @@
 	<!-- Declare the jar files for MySQL access through JDBC. -->
 	<authData id="TradeDataSourceAuthData" password="root" user="123456"/>
 	<authData id="TradeAdminAuthData" password="root" user="123456"/>
-
+<!-- 
 <library id="MySQLLib">
   <fileset dir="${server.config.dir}/resources/Daytrader3SampleMysqlLibs" includes="*.jar"/>
 </library>
@@ -44,8 +44,8 @@
               serverName="localhost" portNumber="3307" 
               user="root" password="123456"/>
 </dataSource>
+-->	
 	
-<!--	
 	<jdbcDriver id="postgresqlJDBC">
              <library name="Postgresql Libs">
 <fileset dir="${shared.resource.dir}/Daytrader3SamplePostgresqlLibs" id="Postgresql Jars" includes="*.jar"/>
@@ -60,8 +60,7 @@
              <properties databaseName="postgres" password="mysecretpassword" portNumber="5432" serverName="localhost" user="postgres"/>
       </dataSource>
 	
-	
--->	
+
 	
 	
 	
