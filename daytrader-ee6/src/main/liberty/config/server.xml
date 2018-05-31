@@ -23,7 +23,7 @@
 	-->
 	 
 	<!-- Declare the jar files for MySQL access through JDBC. -->
-<!--
+
 <library id="MySQLLib">
   <fileset dir="{server.config.dir}/resources/Daytrader3SampleMysqlLibs" includes="*.jar"/>
 </library>
@@ -42,8 +42,8 @@
               serverName="localhost" portNumber="3306" 
               user="root" password="123456"/>
 </dataSource>
-	-->
 	
+<!--	
 	<jdbcDriver id="postgresqlJDBC">
              <library name="Postgresql Libs">
 <fileset dir="${shared.resource.dir}/Daytrader3SamplePostgresqlLibs" id="Postgresql Jars" includes="*.jar"/>
@@ -59,7 +59,7 @@
       </dataSource>
 	
 	
-	
+-->	
 	
 	
 	
