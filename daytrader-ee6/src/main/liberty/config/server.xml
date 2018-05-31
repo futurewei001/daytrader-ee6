@@ -21,12 +21,13 @@
 	<jdbcDriver id="DerbyEmbedded" libraryRef="DerbyLib"/>
 	<library filesetRef="DerbyFileset" id="DerbyLib"/>
 	-->
+	 
 	<!-- Declare the jar files for MySQL access through JDBC. -->
+<!--
 <library id="MySQLLib">
   <fileset dir="{server.config.dir}/resources/Daytrader3SampleMysqlLibs" includes="*.jar"/>
 </library>
 	
-	<!-- Declare the Daytrader3Sample Server project database -->
 <dataSource jndiName="jdbc/TradeDataSource" >
   <jdbcDriver libraryRef="MySQLLib"/>
   <properties databaseName="mysql" 
@@ -35,13 +36,30 @@
 </dataSource>
 
 
-<!-- Declare the Daytrader3Sample Server reports database -->
 <dataSource jndiName="jdbc/NoTxTradeDataSource" transactional="false">
   <jdbcDriver libraryRef="MySQLLib"/>
   <properties databaseName="mysql" 
               serverName="localhost" portNumber="3306" 
               user="root" password="123456"/>
 </dataSource>
+	-->
+	
+	<jdbcDriver id="postgresqlJDBC">
+             <library name="Postgresql Libs">
+<fileset dir="${shared.resource.dir}/Daytrader3SamplePostgresqlLibs" id="Postgresql Jars" includes="*.jar"/>
+             </library>
+      </jdbcDriver>
+ 
+      <dataSource connectionManagerRef="conMgr1" id="TradeDataSource" isolationLevel="TRANSACTION_READ_COMMITTED" jdbcDriverRef="postgresqlJDBC" jndiName="jdbc/TradeDataSource" statementCacheSize="60" type="javax.sql.DataSource">
+             <properties databaseName="postgres" password="mysecretpassword" portNumber="5432" serverName="localhost" user="postgres"/>
+      </dataSource>
+ 
+      <dataSource connectionManagerRef="conMgr2" id="NoTxTradeDataSource" isolationLevel="TRANSACTION_READ_COMMITTED" jdbcDriverRef="postgresqlJDBC" jndiName="jdbc/NoTxTradeDataSource" statementCacheSize="10" transactional="false">
+             <properties databaseName="postgres" password="mysecretpassword" portNumber="5432" serverName="localhost" user="postgres"/>
+      </dataSource>
+	
+	
+	
 	
 	
 	
