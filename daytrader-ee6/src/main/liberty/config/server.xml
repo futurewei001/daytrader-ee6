@@ -25,7 +25,7 @@
 	<!-- Declare the jar files for MySQL access through JDBC. -->
 
 <library id="MySQLLib">
-  <fileset dir="{server.config.dir}/resources/Daytrader3SampleMysqlLibs" includes="*.jar"/>
+  <fileset dir="${server.config.dir}/resources/Daytrader3SampleMysqlLibs" includes="*.jar"/>
 </library>
 	
 <dataSource jndiName="jdbc/TradeDataSource" type="javax.sql.DataSource">
