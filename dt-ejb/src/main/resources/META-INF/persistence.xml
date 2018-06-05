@@ -31,7 +31,8 @@
         <!-- Enables JPA L2 Caching on all entities 
         <shared-cache-mode>ALL</shared-cache-mode> -->
         
-        <properties>          
+        <properties>  
+ <property name="openjpa.DynamicEnhancementAgent" value="true"/>        
         </properties>
         
         
