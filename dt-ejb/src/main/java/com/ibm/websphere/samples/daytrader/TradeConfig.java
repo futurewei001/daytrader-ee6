@@ -38,7 +38,7 @@ public class TradeConfig {
     public static final int EJB3 = 0;
     public static final int DIRECT = 1;
     public static final int SESSION3 = 2;
-	public static int runTimeMode = EJB3;
+	public static int runTimeMode = DIRECT;
 
 	public static String[] orderProcessingModeNames =
 		{ "Synchronous", "Asynchronous_2-Phase" };
