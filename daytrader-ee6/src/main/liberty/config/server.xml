@@ -41,7 +41,7 @@
 <dataSource id="NoTxTradeDataSource"  connectionManagerRef="conMgr2" jndiName="jdbc/NoTxTradeDataSource" transactional="false">
   <jdbcDriver libraryRef="MySQLLib"/>
   <properties databaseName="mysql" 
-              serverName="mysqlhost" portNumber="3307" 
+              serverName="uatdbhost" portNumber="3307" 
               user="root" password="123456"/>
 </dataSource>
 	
