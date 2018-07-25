@@ -329,40 +329,7 @@
 			    <imageName>dhvines/${project.artifactId}:${project.version}</imageName> 
 			  </configuration> 
 			</plugin>
-			<plugin>
-			  <groupId>io.fabric8</groupId>
-			  <artifactId>docker-maven-plugin</artifactId>
-			  <version>0.20.1</version>
-			  <executions>
-			    <execution>
-			      <id>start</id>
-			      <phase>pre-integration-test</phase>
-			      <goals> <goal>start</goal> </goals>
-			      <configuration>
-			        <images>
-			          <image>
-			            <name>dhvines/${project.artifactId}:${project.version}</name>
-			            <alias>${project.artifactId}</alias>
-			            <run>
-			              <ports> <port>9080:9080</port><port>9443:9443</port> </ports>                         
-			              <wait>
-			                <log>
-			                  (?s)The server defaultServer is ready to run a smarter planet.
-			                </log>
-			                <time>600000</time>
-			              </wait>
-			            </run>
-			          </image>
-			        </images>
-			      </configuration>
-			    </execution>
-			    <execution>
-			      <id>stop</id>
-			      <phase>post-integration-test</phase>
-			      <goals> </goals>
-			    </execution>
-			  </executions>
-			</plugin>
+			
          </plugins>
       </build>
    </profile>
