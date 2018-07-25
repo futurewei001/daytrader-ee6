@@ -22,39 +22,6 @@ pipeline {
                    '''
              }
         }
-        stage('Continuous Delivery') {
-            steps {
-                sh '''
-                    echo "docker login to master.cfc"
-                    docker login -u admin -p admin $ICP_MASTER_CFC
-                    echo "docker tag"
-                    docker tag dhvines/daytrader-ee6:0.0.1-SNAPSHOT $ICP_MASTER_CFC/default/daytrader-ee6
-                    echo "docker push"
-                    docker push $ICP_MASTER_CFC/default/daytrader-ee6
-                    echo "kubectl login"
-                    kubectl config set-cluster cfc --server=$ICP_MASTER_8001 --insecure-skip-tls-verify=true
-                    kubectl config set-context cfc --cluster=cfc
-                    kubectl config set-credentials user --token=$ICP_TOKEN
-                    kubectl config set-context cfc --user=user --namespace=default
-                    kubectl config use-context cfc
-                    #!/bin/bash
-                    echo "checking if wlp-daytrader-jenkins already exists"
-                    if kubectl describe service wlp-daytrader-jenkins; then
-                        echo "Service already exists, delete first"
-                        kubectl delete service wlp-daytrader-jenkins
-                    fi
-                    if kubectl describe deployment wlp-daytrader-jenkins; then
-                        echo "Application already exists, delete first"
-                        kubectl delete deployment wlp-daytrader-jenkins
-                    fi
-                    echo "Create application"
-                    kubectl create -f app.json
-                    echo "Create service"
-                    set +e
-                    kubectl create -f service.json                                      
-                    echo "finished"
-                '''
-            }
-        }
+        
     }
 }
