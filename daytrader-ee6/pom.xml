@@ -17,12 +17,7 @@
     	<daytraderAppRoute>http://10.0.2.15:9080</daytraderAppRoute>    
 	  </properties>
 	  <dependencies>
-	      <dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		  </dependency>
+	      
 	      <dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-client</artifactId>
@@ -157,12 +152,7 @@
         <daytraderAppRoute>http://10.0.2.15:9080</daytraderAppRoute>
       </properties>
       <dependencies>
-		  <dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		  </dependency>
+		 
 	      <dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-client</artifactId>
