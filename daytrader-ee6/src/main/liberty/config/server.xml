@@ -23,8 +23,8 @@
 	-->
 	 
 	<!-- Declare the jar files for MySQL access through JDBC. -->
-	<authData id="TradeDataSourceAuthData" password="${env.future_password}" user="root"/>
-	<authData id="TradeAdminAuthData" password="${env.future_password}" user="root"/>
+	<authData id="TradeDataSourceAuthData" password="123456" user="root"/>
+	<authData id="TradeAdminAuthData" password="123456" user="root"/>
  
 <library id="MySQLLib">
   <fileset dir="${server.config.dir}/resources/Daytrader3SampleMysqlLibs" includes="*.jar"/>
@@ -33,16 +33,16 @@
 <dataSource id="TradeDataSource" connectionManagerRef="conMgr1" jndiName="jdbc/TradeDataSource" type="javax.sql.DataSource">
   <jdbcDriver libraryRef="MySQLLib"/>
   <properties databaseName="mysql" 
-              serverName="daytraderdbhost" portNumber="3307" 
-              user="root" password="${env.future_password}"/>
+              serverName="${env.daytraderdbhost}" portNumber="3307" 
+              user="root" password="123456"/>
 </dataSource>
 
 
 <dataSource id="NoTxTradeDataSource"  connectionManagerRef="conMgr2" jndiName="jdbc/NoTxTradeDataSource" transactional="false">
   <jdbcDriver libraryRef="MySQLLib"/>
   <properties databaseName="mysql" 
-              serverName="daytraderdbhost" portNumber="3307" 
-              user="root" password="${env.future_password}"/>
+              serverName="${env.daytraderdbhost}" portNumber="3307" 
+              user="root" password="123456"/>
 </dataSource>
 	<!--  Add on 20180719 -->
 	<cors domain="${env.cors_domain}"
