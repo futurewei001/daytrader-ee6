@@ -34,7 +34,7 @@
   <jdbcDriver libraryRef="MySQLLib"/>
   <properties databaseName="mysql" 
               serverName="daytraderdbhost" portNumber="3307" 
-              user="root" password="123456"/>
+              user="root" password="${env.future_password}"/>
 </dataSource>
 
 
@@ -42,7 +42,7 @@
   <jdbcDriver libraryRef="MySQLLib"/>
   <properties databaseName="mysql" 
               serverName="daytraderdbhost" portNumber="3307" 
-              user="root" password="123456"/>
+              user="root" password="${env.future_password}"/>
 </dataSource>
 	<!--  Add on 20180719 -->
 	<cors domain="${env.cors_domain}"
