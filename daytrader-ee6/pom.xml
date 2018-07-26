@@ -171,10 +171,7 @@
 	          		<target>1.8</target>
 	        	</configuration>
 	       		<executions>
-	       	  	  <execution>
-	       	        <phase>test-compile</phase>
-	      	        <goals> <goal>testCompile</goal> </goals>
-	      	      </execution>
+	       	  	 
 	       	    </executions>
 	      	</plugin>
 	      	<plugin>
