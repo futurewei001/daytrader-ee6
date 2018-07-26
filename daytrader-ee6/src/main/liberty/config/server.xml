@@ -44,15 +44,7 @@
               serverName="${env.daytraderdbhost}" portNumber="3307" 
               user="root" password="123456"/>
 </dataSource>
-	<!--  Add on 20180719 -->
-	<cors domain="${env.cors_domain}"
-      allowedOrigins="${env.cors_allowedOrigins}"
-      allowedMethods="${env.cors_allowedMethods}"
-      allowedHeaders="${env.cors_allowedHeaders}"
-      exposeHeaders="${env.cors_exposeHeaders}"
-      allowCredentials="${env.cors_Credentials}"
-      maxAge="${env.cors_maxAge}"/>
-	
+
 	<!-- 
 	<jdbcDriver id="postgresqlJDBC">
              <library name="Postgresql Libs">
