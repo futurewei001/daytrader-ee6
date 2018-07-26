@@ -103,10 +103,7 @@
 					<testSourceDirectory>src/test/java</testSourceDirectory>
 				      </configuration>
 				    </execution>
-				    <execution>
-				      <id>verify-results</id>
-				      <goals> <goal>verify</goal> </goals>
-				    </execution>
+				    
 				  </executions>
 				</plugin>
 	            <plugin>
@@ -278,10 +275,7 @@
 				<testSourceDirectory>src/test/java</testSourceDirectory>
 			      </configuration>
 			    </execution>
-			    <execution>
-			      <id>verify-results</id>
-			      <goals> <goal>verify</goal> </goals>
-			    </execution>
+			    
 			  </executions>
 			</plugin>
 			<plugin>
