@@ -23,8 +23,8 @@
 	-->
 	 
 	<!-- Declare the jar files for MySQL access through JDBC. -->
-	<authData id="TradeDataSourceAuthData" password="123456" user="root"/>
-	<authData id="TradeAdminAuthData" password="123456" user="root"/>
+	<authData id="TradeDataSourceAuthData" password="${env.future_password}" user="root"/>
+	<authData id="TradeAdminAuthData" password="${env.future_password}" user="root"/>
  
 <library id="MySQLLib">
   <fileset dir="${server.config.dir}/resources/Daytrader3SampleMysqlLibs" includes="*.jar"/>
