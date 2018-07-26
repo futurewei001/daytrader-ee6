@@ -1,10 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'ICP_MASTER_CFC', defaultValue: 'mycluster.icp:8500')
-        string(name: 'ICP_MASTER_8001', defaultValue: 'https://10.0.2.15:8001')
-        string(name: 'ICP_TOKEN', defaultValue: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4tNjcya2siLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjZmMDlmM2M1LTVhNjktMTFlOC1iYzgwLTA4MDAyN2NmOGQzNyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlZmF1bHQifQ.YjGvj2QhPxETAnifUsZmNpXct779QwLJoOMOJOxJ_lQugeWAYno77Stvgf9oQ1rPC77s3tYJ5pV_qrDEaOsBK3U1Ov4n8Ph3nYdlbbk1h__8xEkpgrWOQp5Uo5Ksq0ff-OIh0lcVxgV7Zsoqbnvy6kIRNl4kr2JnrXqKjYQ9NbkXEwbwvLuQ3gLJzY8kErS47NLPCEh3mh-vc_Tjj3QMyfNuGeRdkll4-Pb2I1bXaWGVUdZrXheSFZBP_B5op6i4g2liy5KW3g6juhdPYSgXqVsCIzBDR-JOzmd8PQak_3aIvT01FBuXoCcHF9nG9KDmgbOAqm6NNlnePy6IXRwAZw')
-        string(name: 'image_version', defaultValue: '1.1')
+           string(name: 'IMAGE_VERSION', defaultValue: '1.1')
     }
     stages {
         stage('Continuous Integration') {
@@ -19,7 +16,7 @@ pipeline {
                    cd ../daytrader-ee6
                    mvn clean install
                    mvn clean verify -Pci-docker
-                   docker tag dhvines/daytrader-ee6:1.0-SNAPSHOT daytrader:$image_version
+                   docker tag dhvines/daytrader-ee6:1.0-SNAPSHOT daytrader:$IMAGE_VERSION
                    
                    '''
              }
