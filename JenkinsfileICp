@@ -17,7 +17,8 @@ pipeline {
                    mvn clean install
                    mvn clean verify -Pci-docker
                    docker tag dhvines/daytrader-ee6:1.0-SNAPSHOT daytrader:$IMAGE_VERSION
-                   docker save daytrader:$IMAGE_VERSION > /root/dockerImages/daytrader-web/$IMAGE_VERSION/daytrader$IMAGE_VERSION.tar
+                   mkdir -p /demo/dockerImages/daytrader-web/$IMAGE_VERSION/
+                   docker save daytrader:$IMAGE_VERSION > /demo/dockerImages/daytrader-web/$IMAGE_VERSION/daytrader$IMAGE_VERSION.tar
                    '''
              }
         }
